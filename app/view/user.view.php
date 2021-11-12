@@ -10,6 +10,7 @@ class UserView
     {
         $this->smarty = new Smarty();
     }
+    
     public function mostrarLogin($mensaje = ''){
         $this->smarty->assign('titulo','Inicio de Sesion');
         $this->smarty->assign('BASE_URL', BASE_URL);

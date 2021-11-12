@@ -3,6 +3,7 @@
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 define('HOME', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/home');
 define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/login');
+
 require_once('app/controllers/cars.controller.php');
 require_once('app/controllers/user.controller.php');
 
@@ -22,18 +23,18 @@ $params = explode('/', $action);
 
 // determina que camino seguir según la acción
 switch ($params[0]) {
+    case 'login':
+        $userControllers->showLogin();
+        break; 
+    case 'logout':
+        $userControllers->logOut();
+        break;  
+    case 'verificar':
+        $userControllers->verificar();
+        break;     
     case 'home':
         $carsController->showHome();
         break;
-    case 'login':
-        $userControllers->showLogin();
-        break;   
-    case 'verificar':
-        $userControllers->verificar();
-        break;    
-    case 'logout':
-        $userControllers->logout();
-        break; 
     case 'showAgregarAuto':
         $carsController->showAddCar();
         break;

@@ -17,12 +17,12 @@ class UserModel extends Model
         $stm->execute([$email]);
 
         $usuario = $stm->fetchAll(PDO::FETCH_OBJ);
-        if(count($usuario)>0){
+
+        if(count($usuario) > 0){
             return $usuario[0];
         }
-        else{
-           return null; 
-        }
+
+        return null;
     }
    
 }

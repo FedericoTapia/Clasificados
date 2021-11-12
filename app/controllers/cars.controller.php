@@ -14,16 +14,14 @@ class CarsController{
         $this->carsModel = new CarsModel();
         $this->carsView = new CarsView();
     }
-    private function checkSession() {
-
+    private function checkSession(){
         session_start();
-
-        if (empty($_SESSION['id'])) {
-            header('Location:'.LOGIN);
+        print_r($_SESSION);
+        if(empty($_SESSION['id'])){
+            header("location: ".LOGIN);
         }
     }
     public function showHome(){
-        
         $this->checkSession();
         $cars = $this->carsModel->getCars();
         $carroceria = $this->carsModel->getCarroceria();
@@ -33,6 +31,7 @@ class CarsController{
 
     }
     public function showAddCar(){
+        $this->checkSession();
         $carroceria = $this->carsModel->getCarroceria();
         $this->carsView->mostrarAddCar($carroceria);
         
@@ -55,7 +54,7 @@ class CarsController{
     }
     
     public function quitCar(){
-    
+        $this->checkSession();
         $id_auto = $_POST['autos'];
     
         $this->carsModel->deleteCar($id_auto);
