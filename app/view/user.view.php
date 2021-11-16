@@ -17,4 +17,10 @@ class UserView
         $this->smarty->assign('mensaje', $mensaje);
         $this->smarty->display('templates/login.tpl');
     }
+    public function mostrarSignup(){
+        $this->smarty->assign('titulo','Creacion de cuenta');
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->display('templates/signup.tpl');
+    }
+
 }

@@ -29,6 +29,12 @@ switch ($params[0]) {
     case 'logout':
         $userControllers->logOut();
         break;  
+    case 'signup':
+        $userControllers->showSignup();
+        break;
+    case 'crearCuenta':
+        $userControllers->crearCuenta();
+        break;
     case 'verificar':
         $userControllers->verificar();
         break;     

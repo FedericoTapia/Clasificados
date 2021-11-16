@@ -27,6 +27,32 @@ class UserController{
         $this->userView->mostrarLogin($mensaje);
         
     }
+
+
+    public function crearCuenta(){
+        if(!empty($_POST['newEmail'])&& !empty($_POST['newPass']) && !empty($_POST['newUserName'])){
+           
+        $newUserName = $_POST['newUserName'];    
+        $newUserMail = $_POST['newEmail'];
+        $newUserPass = password_hash($_POST['newPass'], PASSWORD_BCRYPT); 
+        $this->userModel->darAlta($newUserMail, $newUserPass,$newUserName);
+
+        $_POST['email'] = $newUserMail;
+        $_POST['pass'] = $_POST['newPass'];
+        $this->verificar();
+
+        }
+        else{
+            echo("no ingreso nada");
+        }
+
+        
+
+    }
+    public function showSignup(){
+        $this->userView->mostrarSignup();
+    }
+
     public function verificar(){
 
         $userMail = $_POST['email'];
@@ -52,6 +78,8 @@ class UserController{
             session_start();
             $_SESSION['id'] = $user->id;
             $_SESSION['email'] = $user->email;
+            $_SESSION['userName'] = $user->userName;
+            /* $_SESSION['admin'] = $user->admin; */
             return true;
 
         }
@@ -60,7 +88,6 @@ class UserController{
         }    
     }
     
-                //53:32 "Repaso"
 
 
 

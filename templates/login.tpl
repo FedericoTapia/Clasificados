@@ -8,6 +8,7 @@
             <div class="form-group"><label class="control-label">Pass: </label><input type="password" name="pass"></div>
             <button type="submit" class="btn btn-success">Ingresar</button>
         </form>
+        <h5 id="singup">Si no tiene cuenta y desea crear una <a href="{$BASE_URL}signup">presione aqui</a></h5>
     </div>
 </div>
 {if $mensaje}

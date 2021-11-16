@@ -23,9 +23,13 @@ class CarsController{
     }
     public function showHome(){
         $this->checkSession();
+        $showName = $_SESSION['userName'];
+        /* print_r($_SESSION['admin']);
+        die; */
+        /* if($_SESSION['admin']) */
         $cars = $this->carsModel->getCars();
         $carroceria = $this->carsModel->getCarroceria();
-        $this->carsView->mostrarHome($cars,$carroceria);
+        $this->carsView->mostrarHome($cars,$carroceria,$showName);
         
 
 
@@ -54,6 +58,7 @@ class CarsController{
     }
     
     public function quitCar(){
+
         $this->checkSession();
         $id_auto = $_POST['autos'];
     

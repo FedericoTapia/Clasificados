@@ -24,6 +24,15 @@ class UserModel extends Model
 
         return null;
     }
-   
+    public function darAlta($newUserMail, $newUserPass,$newUserName)
+    {
+        
+        $sql = "INSERT INTO usuarios (email,pass,userName,admin)
+            VALUES (?, ?, ?, 0)";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$newUserMail, $newUserPass,$newUserName]);
+    }
 }
 

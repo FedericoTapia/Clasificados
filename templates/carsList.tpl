@@ -1,7 +1,8 @@
 {include file="templates/header.tpl"}
     
     <div class="row">
-    
+        <h3 class="data">Bienvenido {$usuario}</h3>
+
     
     {foreach from=$autos item=$auto}
 
