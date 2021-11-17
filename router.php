@@ -59,6 +59,9 @@ switch ($params[0]) {
     case 'borrarAuto':
         $carsController->quitCar();
         break;
+    case 'buyCar':
+        $carsController->showBuyCar();
+        break;
     default:
         echo ('404 Page not found');
         break;

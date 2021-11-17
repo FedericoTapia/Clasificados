@@ -37,6 +37,19 @@ class CarsModel extends Model
 
         return $carroceria;
     }
+    public function getOneCar($idCar){
+        $sql = "SELECT * FROM autos
+                WHERE id_auto = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$idCar]);
+
+        $auto = $stm->fetchAll(PDO::FETCH_OBJ);
+
+        return $auto;
+    }
+    
     public function insertCar($fabricante, $modelo,$id_carroceria_fk,$anio,$kilometros,$precio)
     {
         $this->checkSession();

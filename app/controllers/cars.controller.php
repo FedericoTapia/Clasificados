@@ -32,6 +32,14 @@ class CarsController{
 
 
     }
+
+    public function showBuyCar(){
+        $idCar = $_POST['idCar'];
+        $autoBuy = $this->carsModel->getOneCar($idCar);
+        $carroceria = $this->carsModel->getCarroceria();
+        $this->carsView->mostrarBuyCar($autoBuy,$carroceria);
+    }
+
     public function showAddCar(){
         $this->checkSession();
         $carroceria = $this->carsModel->getCarroceria();

@@ -7,12 +7,12 @@
     {/if}
     
     {foreach from=$autos item=$auto}
-
+    <form action="{$BASE_URL}buyCar" method="post">
 
     <div class="col-sm-4 text-center" >
-    
+
         <div class="test">
-        <img src="./libs/images/index/370z.jpg" class="product">
+        <img src="./libs/images/carsIMG/Civic95SI.png" class="product">
         <h1>{$auto->modelo}</h1>
         <p class="price">Precio: {$auto->precio}</p>
         <h3 class="data">Fabricante: {$auto->fabricante}</h3>
@@ -27,7 +27,8 @@
         
         
          
-        <button class="btn btn-success btn-lg">Comprar</button>
+        <button type="submit" name="idCar" class="btn btn-success btn-lg" value="{$auto->id_auto}">Comprar</button>
+        </form>
         </div>
     </div>
 

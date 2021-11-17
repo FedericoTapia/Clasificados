@@ -23,12 +23,21 @@ class CarsView
         $this->smarty->display('templates/carsList.tpl');
 
     }
+    
     public function mostrarAddCar($carroceria){
 
         $this->smarty->assign('BASE_URL',BASE_URL);
         $this->smarty->assign('carroceria',$carroceria);
         $this->smarty->display('templates/formadd.tpl');
     }
+
+    public function mostrarBuyCar($autoBuy,$carroceria){
+        $this->smarty->assign('BASE_URL',BASE_URL);
+        $this->smarty->assign('auto',$autoBuy);
+        $this->smarty->assign('carroceria',$carroceria);
+        $this->smarty->display('templates/sellcar.tpl');
+    }
+
     public function mostrarLogin() {
         $this->smarty->assign('titulo','Iniciar sesion');
         $this->smarty->assign('BASE_URL', BASE_URL);
