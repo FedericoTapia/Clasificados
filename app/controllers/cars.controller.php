@@ -8,10 +8,11 @@ require_once('app/view/cars.view.php');
 class CarsController{
     private $carsModel;
     private $carsView;
-    
+    private $userModel;
     public function __construct()
     {
         $this->carsModel = new CarsModel();
+        $this->userModel = new userModel();
         $this->carsView = new CarsView();
     }
     private function checkSession(){
@@ -24,13 +25,10 @@ class CarsController{
     public function showHome(){
         $this->checkSession();
         $showName = $_SESSION['userName'];
-        /* print_r($_SESSION['admin']);
-        die; */
-        /* if($_SESSION['admin']) */
+        $admin = $_SESSION['admin'];
         $cars = $this->carsModel->getCars();
         $carroceria = $this->carsModel->getCarroceria();
-        $this->carsView->mostrarHome($cars,$carroceria,$showName);
-        
+        $this->carsView->mostrarHome($cars,$carroceria,$showName,$admin);
 
 
     }

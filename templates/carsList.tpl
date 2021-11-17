@@ -1,8 +1,10 @@
 {include file="templates/header.tpl"}
-    
+
     <div class="row">
         <h3 class="data">Bienvenido {$usuario}</h3>
-
+    {if $admin == 1}
+        <li><a href="adminPanel"><button class="btn btn-warning btn-lg">Panel de Administrador</button></a></li>
+    {/if}
     
     {foreach from=$autos item=$auto}
 

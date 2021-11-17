@@ -13,8 +13,9 @@ class CarsView
         $this->smarty = new Smarty();
     }
 
-    public function mostrarHome($autos,$carroceria,$showName)
+    public function mostrarHome($autos,$carroceria,$showName,$admin)
     {
+        $this->smarty->assign('admin',$admin);
         $this->smarty->assign('usuario',$showName);
         $this->smarty->assign('autos',$autos);
         $this->smarty->assign('carroceria',$carroceria);

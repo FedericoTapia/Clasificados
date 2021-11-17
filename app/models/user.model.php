@@ -24,6 +24,18 @@ class UserModel extends Model
 
         return null;
     }
+    public function getAllUsuarios()
+    {
+        $sql = $sql = "SELECT * FROM usuarios ORDER BY id";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute();
+
+        $usuarios = $stm->fetchAll(PDO::FETCH_OBJ);
+
+        return $usuarios;
+    }
     public function darAlta($newUserMail, $newUserPass,$newUserName)
     {
         
@@ -33,6 +45,36 @@ class UserModel extends Model
         $stm = $this->pdo->prepare($sql);
 
         $stm->execute([$newUserMail, $newUserPass,$newUserName]);
+    }
+    public function deleteUser($id)
+    {
+        
+        $sql = "DELETE FROM usuarios
+                WHERE id = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$id]);
+    }
+    public function actualizarUser($id)
+    {
+        $sql = "UPDATE usuarios
+                SET admin = 1
+                WHERE id = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$id]);
+    }
+    public function actualizarAdmin($id)
+    {
+        $sql = "UPDATE usuarios
+                SET admin = 0
+                WHERE id = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$id]);
     }
 }
 

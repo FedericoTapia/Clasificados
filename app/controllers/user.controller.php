@@ -69,7 +69,8 @@ class UserController{
 
         }
     }
-
+    
+    
     private function verificaUsuarioPass($userMail,$userPass){
         $user = $this-> userModel->getUsuario($userMail);
 
@@ -79,7 +80,7 @@ class UserController{
             $_SESSION['id'] = $user->id;
             $_SESSION['email'] = $user->email;
             $_SESSION['userName'] = $user->userName;
-            /* $_SESSION['admin'] = $user->admin; */
+            $_SESSION['admin'] = $user->admin;
             return true;
 
         }
@@ -88,7 +89,29 @@ class UserController{
         }    
     }
     
+    public function showAdminPanel(){
+        session_start();
+        $admin = $_SESSION['admin'];
+        $usuarios = $this->userModel->getAllUsuarios();
+        $this->userView->mostrarAdminPanel($usuarios, $admin);
+    }
+    public function borrarUsuario(){
 
-
+        $id = $_POST['usuario'];
+    
+        $this->userModel->deleteUser($id);
+    
+        header('Location: '.ADMIN);
+    }
+    public function hacerAdmin(){
+        $id = $_POST['addAdmin'];
+        $this->userModel->actualizarUser($id);
+        header('Location: '.ADMIN);
+    }
+    public function quitarAdmin(){
+        $id = $_POST['quitAdmin'];
+        $this->userModel->actualizarAdmin($id);
+        header('Location: '.ADMIN);
+    }
 
 }

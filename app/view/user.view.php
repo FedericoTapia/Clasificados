@@ -22,5 +22,12 @@ class UserView
         $this->smarty->assign('BASE_URL', BASE_URL);
         $this->smarty->display('templates/signup.tpl');
     }
-
+    public function mostrarAdminPanel($usuarios, $admin){
+        $this->smarty->assign('titulo','Panel de Administrador');
+        $this->smarty->assign('usuarios',$usuarios);
+        $this->smarty->assign('admin',$admin);
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->display('templates/admin.tpl');
+    }
+    
 }

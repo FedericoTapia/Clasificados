@@ -16,7 +16,6 @@
         <div class="navegacion">
         
             <li><a href="home"><button class="btn btn-warning btn-lg">Index</button></a></li>
-
         </div>
         <div class="col-sm-4 text-center" style="padding-top:55px" >
             <a href="showAgregarAuto"><button class="btn btn-success btn-lg"> Agregar Auto</button></a>
