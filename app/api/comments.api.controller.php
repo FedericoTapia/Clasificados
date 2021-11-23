@@ -35,4 +35,12 @@ class ApiCommentsController{
         $this->model->insertComment($comentario->comentario, $comentario->puntaje,$comentario->id_auto,$comentario->id_usuario);
         $this->view->response("Se inserto correctamente", 200);
     }
+    public function eliminarComentario($params){
+        $id = $params[':ID'];
+        $this->model->deleteComment($id);
+        $this->view->response("Se elimino el comentario correctamente", 200);
+    }
+
+
+
 }

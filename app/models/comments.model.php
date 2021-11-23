@@ -62,5 +62,14 @@ class CommentsModel extends Model
 
         $stm->execute([$comentario, $puntaje,$id_auto,$id_usuario]);
     }
-    
+    public function deleteComment($id)
+    {
+        
+        $sql = "DELETE FROM comentarios
+            WHERE id_comentario = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$id]);
+    }
 }
