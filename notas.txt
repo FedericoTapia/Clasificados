@@ -1,0 +1,12 @@
+desactivar warnings etc
+
+php_flag display_startup_errors off
+php_flag display_errors off
+php_flag html_errors off
+
+actualizar base de datos
+
+Comentarios (todo por API REST):
+    Como usuario registrado, quiero poder postear comentarios en los ítems del sitio asignándoles un puntaje de 1 a 5. 
+    Cada ítem del sitio tendrá la posibilidad de recibir comentarios y puntuaciones solamente de usuarios logueados.
+    Como administrador del sitio, quiero poder borrar comentarios.
