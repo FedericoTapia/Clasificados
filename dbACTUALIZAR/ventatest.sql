@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2021 a las 08:08:46
+-- Tiempo de generación: 23-11-2021 a las 14:06:03
 -- Versión del servidor: 10.4.20-MariaDB
 -- Versión de PHP: 8.0.9
 
@@ -44,10 +44,8 @@ CREATE TABLE `autos` (
 
 INSERT INTO `autos` (`id_auto`, `fabricante`, `modelo`, `id_carroceria_fk`, `anio`, `kilometros`, `precio`, `image`) VALUES
 (1, 'Honda', 'Civic SI', 1, 1995, 198, 1980, NULL),
-(4, 'Ford', 'Falcon', 8, 1976, 560, 175, NULL),
-(5, 'Dodge', 'RAM', 7, 2010, 90, 2000000, NULL),
-(8, 'Ford', 'A', 6, 2134, 23123, 412412, NULL),
-(9, 'Citroen', 'C3', 2, 2013, 250000, 180500, NULL);
+(12, 'Ferrari', 'Testarossa', 13, 1998, 199882, 20000000, NULL),
+(14, 'Ford', 'Sierra', 9, 1985, 298000, 198000, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,17 +84,23 @@ INSERT INTO `tipocarroceria` (`id_carroceria`, `Carroceria`) VALUES
 --
 
 CREATE TABLE `usuarios` (
-  `id_usuario` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `email` varchar(250) NOT NULL,
-  `password` varchar(250) NOT NULL
+  `pass` varchar(250) NOT NULL,
+  `userName` varchar(250) NOT NULL,
+  `admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `email`, `password`) VALUES
-(2, 'fede@gmail.com', '$2a$12$JiOexFyq0ymE0Xya2heA/.Koy8OpL.Tx6ZYs/exSalc0byLwjreKe');
+INSERT INTO `usuarios` (`id`, `email`, `pass`, `userName`, `admin`) VALUES
+(2, 'fede@gmail.com', '$2a$12$JiOexFyq0ymE0Xya2heA/.Koy8OpL.Tx6ZYs/exSalc0byLwjreKe', 'Federico Tapia', 1),
+(3, 'cacho@gmail.com', '$2y$10$lPoZZB.bglEqV.2qKw3vrOPhXJQoZNho9JTS2tHemotcD02zbft5q', 'Cacho Garcia', 0),
+(5, 'jajavier@gmail.com', '$2y$10$YD6Pb7ZXxxDUR8iCI469ye2RP5XDdzw0/eiIhG/dMYu9xK4LB.n.C', 'Javier', 0),
+(6, 'joa@mail.com', '$2y$10$VoAuCTd8zgKlH6rcPJaVdOmgOE05K2LqirgVxCINHYF28Kw7ruX6G', 'Joaquin', 0),
+(7, 'mar@gmai.com', '$2y$10$piLeU4xnRIdBuEx47E4yzOFiLACT5.GGy5nIRJLhlL0DkaKECvpfC', 'Mariano', 0);
 
 --
 -- Índices para tablas volcadas
@@ -119,7 +123,7 @@ ALTER TABLE `tipocarroceria`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -129,7 +133,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `autos`
 --
 ALTER TABLE `autos`
-  MODIFY `id_auto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_auto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tipocarroceria`
@@ -141,7 +145,7 @@ ALTER TABLE `tipocarroceria`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

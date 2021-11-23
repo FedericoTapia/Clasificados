@@ -23,7 +23,8 @@ class CarsController{
         }
     }
     public function showHome(){
-        $this->checkSession();
+        /* $this->checkSession();*/
+        session_start();
         $showName = $_SESSION['userName'];
         $admin = $_SESSION['admin'];
         $cars = $this->carsModel->getCars();
@@ -65,11 +66,13 @@ class CarsController{
     
     public function quitCar(){
 
-        $this->checkSession();
-        $id_auto = $_POST['autos'];
+        if($this->checkSession()){
+            $id_auto = $_POST['autos'];
     
-        $this->carsModel->deleteCar($id_auto);
+            $this->carsModel->deleteCar($id_auto);
     
-        header('Location: '.BASE_URL);
+            header('Location: '.BASE_URL);
+        }
+        
     }
 }
