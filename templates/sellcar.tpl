@@ -1,7 +1,8 @@
 {include file="templates/header.tpl"}
 
     <div class="row">
-
+    <h3 class="data">¿Es lo que buscabas {$usuario}?</h3>
+    <input type="hidden" id="admin" name="esadmin" value="{$admin}">
 
     <form action="{$BASE_URL}buyCar" method="post">
 
@@ -20,26 +21,20 @@
                 {$chasis->Carroceria}</h3>
             {/if}
         {/foreach}
-        
-        
-         
         <button type="submit" name="idCar" class="btn btn-success btn-lg" value="{$auto[0]->id_auto}">Comprar</button>
         </form>
         </div>
     </div>
     <div class="test">
         <h3>COMENTARIOS</h3>
-        {foreach from=$comentarios item=$comentario}
-        <p class="price">Precio: {$comentario->comentario}</p>
-        <h3 class="data">puntaje: {$comentario->puntaje}</h3>
-
-        {foreach from=$usuarios item=$usuario}
-            {if $comentario->id_usuario == $usuario->id}
-                <h3 class="data">puntaje: {$usuario->userName}</h3>
-            {/if}
-        {/foreach}
-
-        {/foreach}
+        <section id="comentarios">   
+            <ul class="lista-comentarios">
+            <script>getComments('{$idAuto}')</script>
+            </ul>
+        </section>
+{if $usuario != ""}
+    {include file="templates/formComentario.tpl"}
+{/if}
     </div>
 
 

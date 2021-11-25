@@ -24,6 +24,7 @@ class UserModel extends Model
 
         return null;
     }
+
     public function getAllUsuarios()
     {
         $sql = $sql = "SELECT * FROM usuarios ORDER BY id";

@@ -4,19 +4,12 @@ require_once('model.php');
 
 class CommentsModel extends Model
 {
-    private function checkSession() {
 
-        session_start();
-
-        if (empty($_SESSION['id'])) {
-            header('Location:'.LOGIN);
-        }
-    }
-    public function getComments()
+    public function getComments($sort)
     {
 
 
-        $sql = $sql = "SELECT * FROM comentarios ORDER BY id_comentario";
+        $sql = $sql = "SELECT * FROM comentarios $sort";
 
         $stm = $this->pdo->prepare($sql);
 
@@ -53,7 +46,6 @@ class CommentsModel extends Model
     
     public function insertComment($comentario, $puntaje,$id_auto,$id_usuario)
     {
-        /* $this->checkSession(); */
         
         $sql = "INSERT INTO comentarios (comentario, puntaje,id_auto,id_usuario)
             VALUES (?, ?, ?, ?)";
@@ -61,8 +53,10 @@ class CommentsModel extends Model
         $stm = $this->pdo->prepare($sql);
 
         $stm->execute([$comentario, $puntaje,$id_auto,$id_usuario]);
+
+        return true;
     }
-    public function deleteComment($id)
+    public function deleteComment($id_comentario)
     {
         
         $sql = "DELETE FROM comentarios
@@ -70,6 +64,8 @@ class CommentsModel extends Model
 
         $stm = $this->pdo->prepare($sql);
 
-        $stm->execute([$id]);
+        $stm->execute([$id_comentario]);
+
     }
+
 }

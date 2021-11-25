@@ -7,9 +7,11 @@ define('ADMIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . d
 
 require_once('app/controllers/cars.controller.php');
 require_once('app/controllers/user.controller.php');
+require_once('app/models/comments.model.php');
 
 $carsController = new CarsController();
 $userControllers = new UserController();
+$commentsModel = new CommentsModel();
 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
@@ -61,6 +63,9 @@ switch ($params[0]) {
         break;
     case 'buyCar':
         $carsController->showBuyCar();
+        break;
+    case 'borrarComentario':
+        $carsController->quitComment($params[1],$params[2]);
         break;
     default:
         echo ('404 Page not found');

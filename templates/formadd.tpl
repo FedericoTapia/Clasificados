@@ -36,5 +36,14 @@
         </form>
 
     </div>
+    {if $mensaje}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="alert alert-danger" role="alert">
+            {$mensaje}
+        </div>    
+    </div>
+</div>
+{/if}
 </div>
 {include file="templates/footer.tpl"}

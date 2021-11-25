@@ -1,7 +1,5 @@
 <?php
-/**
- * Modelo de datos para Tareas
- */
+
 require_once('config.php');
 
 class Model {

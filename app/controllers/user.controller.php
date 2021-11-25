@@ -1,7 +1,5 @@
 <?php
-/* 
-controlador de tareas
- */
+
 require_once('app/models/user.model.php');
 require_once('app/view/user.view.php');
 
