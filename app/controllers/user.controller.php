@@ -93,6 +93,7 @@ class UserController{
         $usuarios = $this->userModel->getAllUsuarios();
         $this->userView->mostrarAdminPanel($usuarios, $admin);
     }
+    
     public function borrarUsuario(){
 
         $id = $_POST['usuario'];

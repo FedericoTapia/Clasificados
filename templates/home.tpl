@@ -5,6 +5,8 @@
     {if $admin == 1}
         <li><a href="adminPanel"><button class="btn btn-warning btn-lg">Panel de Administrador</button></a></li>
     {/if}
+    <li><a href="carrocerias"><button class="btn btn-warning btn-lg">Administracion de carrocerias</button></a></li>
+
     {if $search == ""}
         <form action="{$BASE_URL}home" method="post">
             <label><h3>Tipo de carroceria: </h3>
@@ -44,9 +46,6 @@
          
         <button type="submit" name="idCar" class="btn btn-success btn-lg" value="{$auto->id_auto}">Comprar</button>
         
-        {if $admin == 1}
-        <button type="submit" name="idCar" class="btn btn-primary btn-lg" value="{$auto->id_auto}">Subir imagen</button>
-        {/if}
         
         </form>
         </div>

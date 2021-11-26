@@ -12,10 +12,9 @@ class CarsModel extends Model
             header('Location:'.LOGIN);
         }
     }
+
     public function getCars()
     {
-
-
         $sql = $sql = "SELECT * FROM autos ORDER BY id_auto";
 
         $stm = $this->pdo->prepare($sql);
@@ -26,8 +25,9 @@ class CarsModel extends Model
 
         return $cars;
     }
+
     public function getCarroceria(){
-        $sql = $sql = "SELECT * FROM tipocarroceria ";
+        $sql = $sql = "SELECT * FROM tipocarroceria ORDER BY id_carroceria";
 
         $stm = $this->pdo->prepare($sql);
 
@@ -50,18 +50,47 @@ class CarsModel extends Model
         return $auto;
     }
     
-    public function insertCar($fabricante, $modelo,$id_carroceria_fk,$anio,$kilometros,$precio)
+    public function insertCar($fabricante, $modelo, $id_carroceria_fk, $anio, $kilometros, $precio)
     {
         $this->checkSession();
-        
-        $sql = "INSERT INTO autos (fabricante,modelo,id_carroceria_fk,anio,kilometros,precio)
-            VALUES (?, ?, ?, ?, ?, ?)";
-
+        $sql = "INSERT INTO autos (fabricante, modelo, id_carroceria_fk, anio, kilometros, precio)
+                VALUES (?, ?, ?, ?, ?, ?)";
         $stm = $this->pdo->prepare($sql);
-
         $stm->execute([$fabricante, $modelo,$id_carroceria_fk,$anio,$kilometros,$precio]);
     }
     
+    public function editCarroceria($Carroceria, $id_carroceria)
+    {
+        $sql = "UPDATE tipocarroceria
+                SET Carroceria = ?
+                WHERE id_carroceria = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$Carroceria, $id_carroceria]);
+    }
+    public function editCar($id_auto,$mod,$set)
+    {
+        $sql = "UPDATE autos
+                SET $set = ?
+                WHERE id_auto = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$mod, $id_auto]);
+    }
+
+
+
+    public function insertCarroceria($Carroceria)
+    {
+
+        $sql = "INSERT INTO tipocarroceria (Carroceria)
+                VALUES (?)";
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute([$Carroceria]);
+    }
+
     public function deleteCar($id_auto)
     {
         $this->checkSession();
@@ -71,5 +100,14 @@ class CarsModel extends Model
         $stm = $this->pdo->prepare($sql);
 
         $stm->execute([$id_auto]);
+    }
+    public function deleteCarroceria($id_carroceria)
+    {
+        $sql = "DELETE FROM tipocarroceria
+                WHERE id_carroceria = ?";
+
+        $stm = $this->pdo->prepare($sql);
+
+        $stm->execute([$id_carroceria]);
     }
 }

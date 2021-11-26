@@ -36,6 +36,13 @@ class CarsController{
 
     }
 
+    public function showCarrocerias($mensaje = ''){
+        session_start();
+        $admin = $_SESSION['admin'];
+        $carrocerias = $this->carsModel->getCarroceria();
+        $this->carsView->mostrarAdminCarroceria($carrocerias,$admin,$mensaje);
+    }
+
     public function showBuyCar(){
         session_start();
         $idCar = $_POST['idCar'];
@@ -47,6 +54,16 @@ class CarsController{
         $comentarios = $this->commentsModel->getCommentCar($idCar);
         $usuarios = $this->userModel->getAllUsuarios();
         $this->carsView->mostrarBuyCar($autoBuy,$carroceria,$comentarios,$usuarios,$idCar,$showName,$id_usuario,$admin);
+    }
+
+    public function showEditCar($mensaje = ''){
+        
+        $this->checkSession();
+
+        $carroceria = $this->carsModel->getCarroceria();
+        $autos = $this->carsModel->getCars();
+        $this->carsView->mostrarEditCar($carroceria, $autos,$mensaje);
+            
     }
 
     public function showAddCar($mensaje = ''){
@@ -75,6 +92,77 @@ class CarsController{
 
     
     }
+    public function modifyCar(){
+        $id_auto = $_POST['id_auto'];
+        $fabricante = $_POST['fabricante'];
+        $modelo = $_POST['modelo'];
+        $id_carroceria_fk = $_POST['id_carroceria_fk'];
+        $anio = $_POST['anio'];
+        $kilometros = $_POST['kilometros'];
+        $precio = $_POST['precio'];
+        if (!empty($id_auto)&&($id_auto != '-- Seleccion --')||!empty($fabricante)||!empty($modelo)||!empty($id_carroceria_fk)&&($id_carroceria_fk != '-- Seleccion --')||!empty($anio)||!empty($kilometros)||!empty($precio)) {
+            if(!empty($fabricante)){
+                $set = 'fabricante';
+                $this->carsModel->editCar($id_auto, $fabricante, $set);
+            }
+            if (!empty($modelo)) {
+                $set = 'modelo';
+                $this->carsModel->editCar($id_auto, $modelo, $set);
+            }
+            if (!empty($id_carroceria_fk)&&($id_carroceria_fk != '-- Seleccion --')) {
+                $set = 'id_carroceria_fk';
+                $this->carsModel->editCar($id_auto, $id_carroceria_fk, $set);
+            }
+            if (!empty($anio)) {
+                $set = 'anio';
+                $this->carsModel->editCar($id_auto, $anio, $set);
+            }
+            if (!empty($kilometros)) {
+                $set = 'kilometros';
+                $this->carsModel->editCar($id_auto, $kilometros, $set);
+            }
+            if (!empty($precio)) {
+                $set = 'precio';
+                $this->carsModel->editCar($id_auto, $precio, $set);
+            }
+            header('Location: '.EDITARAUTOS);
+        }else {
+
+            $this->showEditCar($mensaje = 'Indique el auto que desea modificar');
+        }
+        
+
+    
+    }
+    public function addCarroceria(){
+        $Carroceria = $_POST['newCarroceria'];
+
+    
+        if(!empty($Carroceria)){
+            $this->carsModel->insertCarroceria($Carroceria);
+    
+            header('Location: '.ADMINCARROCERIA);
+        }else{
+            $this->showCarrocerias($mensaje = 'Faltan Completar Campos');
+        }
+
+    
+    }
+    public function modifyCarroceria(){
+        $Carroceria = $_POST['editCarroceria'];
+        $id_carroceria = $_POST['carroceriaEditId'];
+
+    
+        if(!empty($Carroceria)&&!empty($id_carroceria)){
+            $this->carsModel->editCarroceria($Carroceria, $id_carroceria);
+    
+            header('Location: '.ADMINCARROCERIA);
+        }else{
+            $this->showCarrocerias($mensaje = 'Faltan Completar Campos');
+        }
+
+    
+    }
     
     public function quitCar(){
 
@@ -87,13 +175,11 @@ class CarsController{
         }
         
     }
-    public function quitComment($id_comentario,$id_auto){
-        
-    
-        $this->commentsModel->deleteComment($id_comentario);
-    
-        header('Location: '.BASE_URL);
-
+    public function quitCarroceria($id_carroceria){
+        if($this->checkSession()==true){
+            $this->carsModel->deleteCarroceria($id_carroceria);
+            header('Location: '.ADMINCARROCERIA);
+        }
         
     }
 }

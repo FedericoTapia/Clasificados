@@ -45,11 +45,28 @@ class CarsView
         $this->smarty->assign('admin', $admin);
         $this->smarty->display('templates/sellcar.tpl');
     }
+    public function mostrarEditCar($carroceria, $autos,$mensaje){
+        $this->smarty->assign('autos', $autos);
+        $this->smarty->assign('carroceria', $carroceria);
+        $this->smarty->assign('mensaje', $mensaje);
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->display('templates/editcar.tpl');
 
+    }
     public function mostrarLogin()
     {
         $this->smarty->assign('titulo', 'Iniciar sesion');
         $this->smarty->assign('BASE_URL', BASE_URL);
         $this->smarty->display('templates/login.tpl');
     }
+    public function mostrarAdminCarroceria($carrocerias,$admin,$mensaje)
+    {
+        $this->smarty->assign('titulo', 'administrador de carrocerias');
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->assign('carrocerias',$carrocerias);
+        $this->smarty->assign('admin',$admin);
+        $this->smarty->assign('mensaje', $mensaje);
+        $this->smarty->display('templates/adminCarroceria.tpl');
+    }
+
 }

@@ -41,9 +41,23 @@ function createCommentHTML(comment) {
     let element = `<p class="price"> ${comment.comentario}</p> <h3 class="data">puntaje: ${comment.puntaje}</h3>`;   
     
     if(admin == 1){
-        element += ' <a href="borrarComentario/'+comment.id_comentario+'">Eliminar</a>';
+        element += '<button onclick="deleteComment('+comment.id_comentario+','+comment.id_auto+')">Eliminar</button>';
     }
     
     element = '<li>'+element+'</li><br><br>';
     return element;  
+}
+function deleteComment(idComentario, idAuto) {
+    console.log('id comentario:'+idComentario);
+    console.log('id auto:'+idAuto);
+    id = idComentario;
+    console.log('id comentario_2:'+id);
+    fetch('api/comentarios/'+id, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},       
+     })
+     .then(response => {
+        getComments(idAuto);
+     })
+     .catch(error => console.log(error));
 }

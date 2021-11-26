@@ -21,7 +21,10 @@
         <div class="col-sm-4 text-center" style="padding-top:55px" >
             <a href="showAgregarAuto"><button class="btn btn-success btn-lg"> Agregar Auto</button></a>
             <a href="logout"><button class="btn btn-warning btn-lg"> log Out</button></a>
-            
+            {if $admin == 1}
+        <br>
+        <a href="showEditarAuto"><button type="button" class="btn btn-primary btn-lg">Editar Auto</button></a>
+        {/if}
         </div>
         {include file="templates/delete.tpl"}
 
