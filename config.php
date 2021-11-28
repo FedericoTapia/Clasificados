@@ -5,7 +5,6 @@ $parametros = [];
 $parametros['host'] = 'localhost';
 //puerto
 $parametros['port'] = 3306;
-
 //nombre de la base de datos
 $parametros['db'] = 'ventatest';
 //usuario de conexion

@@ -39,14 +39,13 @@ function getUsuarios(idusuario) {
 function createCommentHTML(comment) {
     let admin = document.querySelector("input[name=esadmin]").value;
     let element = `<p class="price"> ${comment.comentario}</p> <h3 class="data">puntaje: ${comment.puntaje}</h3>`;   
-    
     if(admin == 1){
         element += '<button onclick="deleteComment('+comment.id_comentario+','+comment.id_auto+')">Eliminar</button>';
     }
-    
     element = '<li>'+element+'</li><br><br>';
     return element;  
 }
+
 function deleteComment(idComentario, idAuto) {
     console.log('id comentario:'+idComentario);
     console.log('id auto:'+idAuto);
@@ -55,9 +54,9 @@ function deleteComment(idComentario, idAuto) {
     fetch('api/comentarios/'+id, {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'},       
-     })
-     .then(response => {
+    })
+    .then(response => {
         getComments(idAuto);
-     })
-     .catch(error => console.log(error));
+    })
+    .catch(error => console.log(error));
 }

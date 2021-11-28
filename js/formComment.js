@@ -1,6 +1,5 @@
 document.getElementById("form-comment").addEventListener('submit', addComment);
 
-
 function addComment(e) {
     e.preventDefault();
 
@@ -10,7 +9,7 @@ function addComment(e) {
         id_auto: document.querySelector("input[name=idAuto]").value,
         id_usuario: document.getElementById("usuario").value
     }
-    console.log(data);
+
     fetch('api/comentarios', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},       

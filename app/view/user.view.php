@@ -1,13 +1,12 @@
 <?php
+
 require_once('./libs/smarty-3.1.39/libs/Smarty.class.php');
 
- 
-class UserView
-{
+class UserView{
+
     private $smarty;
 
-    function __construct()
-    {
+    function __construct(){
         $this->smarty = new Smarty();
     }
     
@@ -17,11 +16,13 @@ class UserView
         $this->smarty->assign('mensaje', $mensaje);
         $this->smarty->display('templates/login.tpl');
     }
+
     public function mostrarSignup(){
         $this->smarty->assign('titulo','Creacion de cuenta');
         $this->smarty->assign('BASE_URL', BASE_URL);
         $this->smarty->display('templates/signup.tpl');
     }
+
     public function mostrarAdminPanel($usuarios, $admin){
         $this->smarty->assign('titulo','Panel de Administrador');
         $this->smarty->assign('usuarios',$usuarios);
@@ -29,5 +30,4 @@ class UserView
         $this->smarty->assign('BASE_URL', BASE_URL);
         $this->smarty->display('templates/admin.tpl');
     }
-    
 }

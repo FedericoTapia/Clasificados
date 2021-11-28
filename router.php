@@ -6,6 +6,7 @@ define('LOGIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . d
 define('ADMIN', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/adminPanel');
 define('ADMINCARROCERIA', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/carrocerias');
 define('EDITARAUTOS', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/showEditarAuto');
+
 require_once('app/controllers/cars.controller.php');
 require_once('app/controllers/user.controller.php');
 require_once('app/models/comments.model.php');

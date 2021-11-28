@@ -4,9 +4,10 @@
         <h3 class="data">Bienvenido {$usuario}</h3>
     {if $admin == 1}
         <li><a href="adminPanel"><button class="btn btn-warning btn-lg">Panel de Administrador</button></a></li>
-    {/if}
-    <li><a href="carrocerias"><button class="btn btn-warning btn-lg">Administracion de carrocerias</button></a></li>
+        <li><a href="carrocerias"><button class="btn btn-warning btn-lg">Administracion de carrocerias</button></a></li>
 
+    {/if}
+    
     {if $search == ""}
         <form action="{$BASE_URL}home" method="post">
             <label><h3>Tipo de carroceria: </h3>
@@ -41,12 +42,8 @@
                 {$chasis->Carroceria}</h3>
             {/if}
         {/foreach}
-        
-        
-         
+
         <button type="submit" name="idCar" class="btn btn-success btn-lg" value="{$auto->id_auto}">Comprar</button>
-        
-        
         </form>
         </div>
     </div>
